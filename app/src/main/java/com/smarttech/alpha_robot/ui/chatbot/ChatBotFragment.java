@@ -96,6 +96,7 @@ public class ChatBotFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        requireActivity().recreate();
         binding = null;
     }
 

@@ -22,16 +22,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/bot_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/robot_head"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chat_bot_message_adapter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginTop="@dimen/small_margin"
             android:layout_marginBottom="@dimen/medium_margin"
             android:padding="@dimen/large_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/bot_icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
