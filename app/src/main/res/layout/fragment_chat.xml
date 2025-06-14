@@ -9,6 +9,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/medium_margin"
         app:layout_constraintBottom_toTopOf="@id/send_message_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
 
         <ImageView
             android:id="@+id/bot_icon"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="60dp"
             android:src="@drawable/robot_head"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +52,7 @@
         android:id="@+id/send_message_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/medium_margin"
+        android:layout_marginBottom="@dimen/large_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -64,6 +65,7 @@
             android:autofillHints="@drawable/style_rounded_edittext_bg"
             android:background="@drawable/style_rounded_edittext_bg"
             android:hint="@string/type_your_message"
+            android:textColorHint="?attr/colorAccent"
             android:padding="@dimen/large_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/send_icon"
@@ -71,13 +73,14 @@
 
         <ImageView
             android:id="@+id/send_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="1dp"
-            android:src="@drawable/send"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/send_64"
             app:layout_constraintBottom_toBottomOf="@id/text_ed"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_ed" />
+            app:layout_constraintTop_toTopOf="@id/text_ed"
+            app:tint="?attr/colorAccent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -45,7 +45,7 @@ public class ChatBotFragment extends Fragment {
     private List<ChatMessage> getDummyMessageList() {
         List<ChatMessage> chatMessages = new ArrayList<>();
         chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
-        chatMessages.add(new ChatMessage("this is sayed abdulhakim and i need you to introduce yourself\ncan your say any thing? ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
+        chatMessages.add(new ChatMessage("this is the application developer testing you and i need you to introduce yourself\ncan your say any thing? ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
         chatMessages.add(new ChatMessage("hello Developer", MessageTypeEnum.TEXT, "2", "chatBot", new Date().getTime(), false));
         chatMessages.add(new ChatMessage("I'm the new Chat Bot Developed for Alpha Bot App by 24 Smart Tech Company", MessageTypeEnum.TEXT, "2", "chatBot", new Date().getTime(), false));
         chatMessages.add(new ChatMessage("How can i help you ?", MessageTypeEnum.VOICE, "2", "chatBot", new Date().getTime(), false));
@@ -78,9 +78,6 @@ public class ChatBotFragment extends Fragment {
         chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
         chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.TEXT, "2", "chatBot", new Date().getTime(), false));
         chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
-        chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.TEXT, "2", "chatBot", new Date().getTime(), false));
-        chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
-        chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.TEXT, "2", "chatBot", new Date().getTime(), false));
         return chatMessages;
     }
 
