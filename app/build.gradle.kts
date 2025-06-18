@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.smarttech.alpha_robot"
+    namespace = "com.smart24.alpha_robot"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.smarttech.alpha_robot"
+        applicationId = "com.smart24.alpha_robot"
         minSdk = 31
         targetSdk = 35
         versionCode = 1

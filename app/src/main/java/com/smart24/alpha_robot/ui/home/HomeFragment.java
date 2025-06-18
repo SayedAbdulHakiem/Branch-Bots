@@ -1,4 +1,4 @@
-package com.smarttech.alpha_robot.ui.home;
+package com.smart24.alpha_robot.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.smarttech.alpha_robot.R;
-import com.smarttech.alpha_robot.databinding.FragmentHomeBinding;
+import com.smart24.alpha_robot.R;
+import com.smart24.alpha_robot.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 

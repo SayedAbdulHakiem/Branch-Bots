@@ -29,7 +29,7 @@
                 android:id="@+id/play_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/robot_head" />
+                android:src="@drawable/robot_carton_icon" />
 
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/voice_seekbar"

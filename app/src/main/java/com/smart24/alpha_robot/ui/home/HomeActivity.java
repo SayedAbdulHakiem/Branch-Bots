@@ -1,4 +1,4 @@
-package com.smarttech.alpha_robot.ui.home;
+package com.smart24.alpha_robot.ui.home;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +10,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.smarttech.alpha_robot.R;
-import com.smarttech.alpha_robot.databinding.ActivityHomeBinding;
+import com.smart24.alpha_robot.R;
+import com.smart24.alpha_robot.databinding.ActivityHomeBinding;
 
 public class HomeActivity extends AppCompatActivity {
 

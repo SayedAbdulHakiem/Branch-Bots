@@ -1,4 +1,4 @@
-package com.smarttech.alpha_robot.data;
+package com.smart24.alpha_robot.data;
 
 public enum MessageTypeEnum {
 

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
+    android:background="@color/ic_launcher_background"
     tools:context=".ui.SplashActivity">
 
     <ImageView
@@ -13,7 +13,7 @@
         android:layout_width="170dp"
         android:layout_height="150dp"
         android:scaleType="fitStart"
-        android:src="@drawable/robot_head"
+        android:src="@drawable/robot_carton_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

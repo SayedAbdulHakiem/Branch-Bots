@@ -1,4 +1,4 @@
-package com.smarttech.alpha_robot;
+package com.smart24.alpha_robot;
 
 import org.junit.Test;
 

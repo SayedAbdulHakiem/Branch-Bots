@@ -1,4 +1,4 @@
-package com.smarttech.alpha_robot.ui;
+package com.smart24.alpha_robot.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.smarttech.alpha_robot.R;
-import com.smarttech.alpha_robot.ui.home.HomeActivity;
+import com.smart24.alpha_robot.R;
+import com.smart24.alpha_robot.ui.home.HomeActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.smarttech.alpha_robot;
+package com.smart24.alpha_robot;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.smarttech.alpha_robot", appContext.getPackageName());
+        assertEquals("com.smart24.alpha_robot", appContext.getPackageName());
     }
 }

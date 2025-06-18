@@ -1,4 +1,4 @@
-package com.smarttech.alpha_robot.ui.chatbot;
+package com.smart24.alpha_robot.ui.chatbot;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +10,9 @@ import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.smarttech.alpha_robot.R;
-import com.smarttech.alpha_robot.data.ChatMessage;
-import com.smarttech.alpha_robot.data.MessageTypeEnum;
+import com.smart24.alpha_robot.R;
+import com.smart24.alpha_robot.data.ChatMessage;
+import com.smart24.alpha_robot.data.MessageTypeEnum;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

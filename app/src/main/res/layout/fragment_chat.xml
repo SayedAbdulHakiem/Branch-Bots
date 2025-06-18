@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.chatbot.ChatBotFragment">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bot_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/robot_carton_icon" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -13,24 +22,16 @@
         app:layout_constraintBottom_toTopOf="@id/send_message_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/bot_icon">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/send_message_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/bot_icon"
-            android:layout_width="70dp"
-            android:layout_height="60dp"
-            android:src="@drawable/robot_head"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chat_bot_message_adapter"
@@ -41,7 +42,7 @@
             android:padding="@dimen/large_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bot_icon" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,6 +63,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginBottom="@dimen/medium_margin"
             android:autofillHints="@drawable/style_rounded_edittext_bg"
             android:background="@drawable/style_rounded_edittext_bg"
             android:hint="@string/type_your_message"
@@ -74,13 +77,12 @@
         <ImageView
             android:id="@+id/send_icon"
             android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="2dp"
-            android:src="@drawable/send_64"
+            android:src="@drawable/send"
             app:layout_constraintBottom_toBottomOf="@id/text_ed"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_ed"
-            app:tint="?attr/colorAccent" />
+            app:layout_constraintTop_toTopOf="@id/text_ed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
