@@ -72,12 +72,6 @@ public class ChatBotFragment extends Fragment {
         chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
         chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.TEXT, "2", "chatBot", new Date().getTime(), false));
         chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
-        chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.TEXT, "2", "chatBot", new Date().getTime(), false));
-        chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
-        chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.TEXT, "2", "chatBot", new Date().getTime(), false));
-        chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
-        chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.TEXT, "2", "chatBot", new Date().getTime(), false));
-        chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT, "1", "sayed", new Date().getTime(), true));
         return chatMessages;
     }
 

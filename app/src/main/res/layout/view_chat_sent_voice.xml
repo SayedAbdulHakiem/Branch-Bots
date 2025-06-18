@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="end"
     android:layout_marginStart="@dimen/xlarge_margin"
-    android:layout_marginTop="@dimen/medium_margin">
+    android:layout_marginTop="@dimen/x_medium_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -25,11 +25,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/play_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/speak" />
+                android:tint="@color/white"
+                app:srcCompat="@drawable/speak" />
 
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/voice_seekbar"
