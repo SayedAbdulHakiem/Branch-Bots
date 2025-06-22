@@ -13,8 +13,8 @@ import lombok.Setter;
 public class ChatVoiceMessage extends ChatMessage {
     private File voiceFile;
 
-    public ChatVoiceMessage(File voiceFile) {
-        super(null, MessageTypeEnum.VOICE);
+    public ChatVoiceMessage(File voiceFile, String optionalText) {
+        super(optionalText, MessageTypeEnum.VOICE);
         this.voiceFile = voiceFile;
     }
 

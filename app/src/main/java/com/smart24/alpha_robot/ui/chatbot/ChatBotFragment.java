@@ -118,24 +118,22 @@ public class ChatBotFragment extends Fragment {
     }
 
     private void sendMessage(File voiceFile) {
-        chatMessageList.add(new ChatVoiceMessage(voiceFile));
-        updateAdapterList(chatMessageList);
+        ChatMessage chatMessage = new ChatVoiceMessage(voiceFile, null);
         GroqApi groqApi = GroqRetrofitClient.getRetrofitInstance().create(GroqApi.class);
-        RequestBody requestFile = RequestBody.create(voiceFile, MediaType.parse("audio/mp3"));
+        RequestBody requestFile = RequestBody.create(voiceFile, MediaType.parse("audio/*"));
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", voiceFile.getName(), requestFile);
+        MultipartBody.Part modelPart = MultipartBody.Part.createFormData("model", ConstantStrings.GROQ_TRANSCRIPT_MODEL_ID);
 
-
-//        Call<TranscribedResponse> transcribedResponseCall = groqApi.transcribeAudio(ConstantStrings.GROQ_API_AUTHORIZATION, filePart,
-//                ConstantStrings.GROQ_TRANSCRIPT_MODEL_ID, ConstantStrings.GROQ_TEMPERATURE,
-//                ConstantStrings.GROQ_RESPONSE_FORMAT, ConstantStrings.GROQ_TIMESTAMP_GRANULARITIES, ConstantStrings.GROQ_LANGUAGE);
-        // TODO check why it's failing here after call
-        Call<TranscribedResponse> transcribedResponseCall = groqApi.transcribeAudio(ConstantStrings.GROQ_API_AUTHORIZATION, filePart, ConstantStrings.GROQ_TRANSCRIPT_MODEL_ID);
+        Call<TranscribedResponse> transcribedResponseCall = groqApi.transcribeAudio(ConstantStrings.GROQ_API_AUTHORIZATION, filePart, modelPart);
         transcribedResponseCall.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<TranscribedResponse> call, Response<TranscribedResponse> response) {
+
                 if (response.isSuccessful() && response.body() != null) {
                     TranscribedResponse transcribedResponse = response.body();
-                    SharedUtils.showMessagePositive(requireActivity(), transcribedResponse.getText());
+                    chatMessage.setText(transcribedResponse.getText());
+                    chatMessageList.add(chatMessage);
+                    updateAdapterList(chatMessageList);
                 } else {
                     SharedUtils.showMessageNegative(requireActivity(), getString(R.string.third_party_call_failed) + " " + response.message());
                 }

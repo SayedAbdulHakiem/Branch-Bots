@@ -25,5 +25,5 @@ public interface GroqApi {
 
     @Multipart
     @POST("openai/v1/audio/transcriptions")
-    Call<TranscribedResponse> transcribeAudio(@Header("Authorization") String authorization, @Part MultipartBody.Part file, @Part("model") String model);
+    Call<TranscribedResponse> transcribeAudio(@Header("Authorization") String authorization, @Part MultipartBody.Part file, @Part MultipartBody.Part model);
 }

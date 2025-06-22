@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -16,6 +19,21 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // --- START: Accessing local.properties for BuildConfig Field ---
+        val properties = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+
+        if (localPropertiesFile.exists()) {
+            FileInputStream(localPropertiesFile).use { input ->
+                properties.load(input)
+            }
+        }
+
+        val groqApiKey = properties.getProperty("groq.api.key") ?: ""
+
+        buildConfigField("String", "GROQ_API_KEY", "\"$groqApiKey\"")
+        // --- END: Accessing local.properties for BuildConfig Field ---
     }
 
     buildTypes {

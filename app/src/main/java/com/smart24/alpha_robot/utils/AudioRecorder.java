@@ -37,7 +37,7 @@ public class AudioRecorder {
                 SharedUtils.showToast("Could not create a directory for recording");
             }
         }
-        audioFilePath = new File(outputDir, outPutFileName + ".mp3").getAbsolutePath();
+        audioFilePath = new File(outputDir, outPutFileName + ".m4a").getAbsolutePath();
     }
 
     public void startRecording(String outPutFileName) throws IOException {

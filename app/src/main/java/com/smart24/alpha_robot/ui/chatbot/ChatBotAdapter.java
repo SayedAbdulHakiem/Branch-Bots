@@ -83,10 +83,10 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.AdapterV
         if (currentItemViewType == VIEW_TYPE_RECEIVED_TEXT || currentItemViewType == VIEW_TYPE_SENT_TEXT) {
             holder.textMessageTv.setText(dataList.get(position).getText());
         } else {
-            // TODO handle this seek bar and duration
             if (dataList.get(position) instanceof ChatVoiceMessage) {
+                ChatVoiceMessage chatVoiceMessage = (ChatVoiceMessage) dataList.get(position);
+                holder.transcribedMessageTv.setText(chatVoiceMessage.getText());
                 holder.itemView.setOnClickListener(view -> {
-                    ChatVoiceMessage chatVoiceMessage = (ChatVoiceMessage) dataList.get(position);
                     audioRecorder.startPlayAudio(fragment.requireActivity(), chatVoiceMessage.getVoiceFile().getAbsolutePath());
                     holder.voiceSeekBar.setProgress(0);
                     holder.durationTv.setText(String.format("00:10"));
@@ -115,7 +115,7 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.AdapterV
 
 
     public static class AdapterViewHolder extends RecyclerView.ViewHolder {
-        TextView textMessageTv, dateTv, durationTv;
+        TextView textMessageTv, dateTv, durationTv, transcribedMessageTv;
         AppCompatSeekBar voiceSeekBar;
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
 
@@ -125,6 +125,7 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.AdapterV
             dateTv = itemView.findViewById(R.id.date);
             voiceSeekBar = itemView.findViewById(R.id.voice_seekbar);
             durationTv = itemView.findViewById(R.id.duration_tv);
+            transcribedMessageTv = itemView.findViewById(R.id.transcribed_message);
         }
     }
 }

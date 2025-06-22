@@ -19,6 +19,7 @@
             android:id="@+id/play_voice_layout"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
             android:background="@drawable/style_voice_play_radius_backg"
             android:backgroundTint="@color/material_on_background_disabled"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +43,15 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/transcribed_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/droid_kuffi"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/play_voice_layout" />
+        <TextView
             android:id="@+id/duration_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +61,7 @@
             android:visibility="gone"
             android:textSize="@dimen/small_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/play_voice_layout" />
+            app:layout_constraintTop_toBottomOf="@id/transcribed_message" />
 
         <TextView
             android:id="@+id/date"
@@ -62,7 +72,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/small_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/play_voice_layout" />
+            app:layout_constraintTop_toBottomOf="@id/transcribed_message" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

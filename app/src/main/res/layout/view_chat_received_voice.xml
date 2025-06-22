@@ -40,6 +40,7 @@
                 android:progress="0" />
         </LinearLayout>
 
+
         <TextView
             android:id="@+id/duration_tv"
             android:layout_width="wrap_content"

@@ -19,7 +19,6 @@
             android:id="@+id/text_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:fontFamily="@font/droid_kuffi"
             android:text="@string/sent_message"
             android:textColor="@color/white"
