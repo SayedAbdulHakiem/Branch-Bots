@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.smart24.alpha_robot.R;
 import com.smart24.alpha_robot.data.ChatMessage;
+import com.smart24.alpha_robot.data.ChatVoiceMessage;
 import com.smart24.alpha_robot.data.MessageTypeEnum;
+import com.smart24.alpha_robot.utils.AudioRecorder;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,8 +37,11 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.AdapterV
     private List<ChatMessage> dataList = new ArrayList<>();
     private Fragment fragment;
 
+    AudioRecorder audioRecorder;
+
     public ChatBotAdapter(Fragment fragment) {
         this.fragment = fragment;
+        this.audioRecorder = new AudioRecorder(fragment.requireActivity());
     }
 
     @Override
@@ -79,8 +84,16 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.AdapterV
             holder.textMessageTv.setText(dataList.get(position).getText());
         } else {
             // TODO handle this seek bar and duration
-            holder.voiceSeekBar.setProgress(10);
-            holder.durationTv.setText(String.format("00:10"));
+            if (dataList.get(position) instanceof ChatVoiceMessage) {
+                holder.itemView.setOnClickListener(view -> {
+                    ChatVoiceMessage chatVoiceMessage = (ChatVoiceMessage) dataList.get(position);
+                    audioRecorder.startPlayAudio(fragment.requireActivity(), chatVoiceMessage.getVoiceFile().getAbsolutePath());
+                    holder.voiceSeekBar.setProgress(0);
+                    holder.durationTv.setText(String.format("00:10"));
+                });
+
+            }
+
         }
 
         holder.dateTv.setText(holder.sdf.format(dataList.get(position).getTimeStamp()));

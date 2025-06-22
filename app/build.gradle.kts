@@ -64,4 +64,10 @@ dependencies {
 
     annotationProcessor(libs.lombok)
     compileOnly(libs.lombok)
+
+
+    // for retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 }

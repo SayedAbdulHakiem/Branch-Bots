@@ -16,4 +16,11 @@
     <string name="sent_message">sent message</string>
     <string name="type_your_message">Type your message...</string>
     <string name="duration">duration</string>
+    <string name="not_valid_message">no a valid message</string>
+    <string name="require_permission">Require Granting Permissions</string>
+    <string name="record_started">Recording Started</string>
+    <string name="record_sopped">Recroding Stopped</string>
+    <string name="recording_error">Error while Recording</string>
+    <string name="record_not_saved">Not Saved Record</string>
+    <string name="third_party_call_failed">Third Party Call Failed </string>
 </resources>

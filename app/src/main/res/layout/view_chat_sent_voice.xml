@@ -36,6 +36,8 @@
                 android:id="@+id/voice_seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:max="100"
+                android:visibility="gone"
                 android:progress="0" />
         </LinearLayout>
 
@@ -46,6 +48,7 @@
             android:fontFamily="@font/droid_kuffi"
             android:text="@string/duration"
             android:textColor="@color/white"
+            android:visibility="gone"
             android:textSize="@dimen/small_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/play_voice_layout" />
