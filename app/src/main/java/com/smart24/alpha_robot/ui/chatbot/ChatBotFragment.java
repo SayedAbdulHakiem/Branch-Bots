@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.smart24.alpha_robot.R;
 import com.smart24.alpha_robot.data.ChatMessage;
 import com.smart24.alpha_robot.data.ChatVoiceMessage;
-import com.smart24.alpha_robot.data.MessageTypeEnum;
 import com.smart24.alpha_robot.data.TextToSpeechRequest;
 import com.smart24.alpha_robot.data.TranscribedResponse;
 import com.smart24.alpha_robot.databinding.FragmentChatBinding;
@@ -61,6 +60,7 @@ public class ChatBotFragment extends Fragment {
         chatBotAdapter = new ChatBotAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setStackFromEnd(true);
+        layoutManager.setSmoothScrollbarEnabled(true);
         binding.chatMessagesRv.setLayoutManager(layoutManager);
         binding.chatMessagesRv.setAdapter(chatBotAdapter);
         chatMessageList = getDummyMessageList();
@@ -121,8 +121,8 @@ public class ChatBotFragment extends Fragment {
     }
 
     private void sendMessage(String text) {
-        chatMessageList.add(new ChatMessage(text, MessageTypeEnum.TEXT));
-        updateAdapterList(chatMessageList);
+//        chatMessageList.add(new ChatMessage(text, MessageTypeEnum.TEXT));
+//        updateAdapterList(chatMessageList);
         textToSpeechCall(text);
     }
 
@@ -171,15 +171,17 @@ public class ChatBotFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    try {
-                        File speechAudio = saveAudioFile(response.body(), ConstantStrings.SPEECH_FILE_NAME + "." + ConstantStrings.GROQ_SPEECH_RESPONSE_TYPE);
+                    String audioFileName = ConstantStrings.SPEECH_FILE_NAME + DateUtils.getCurrentTimeStamp() + "." + ConstantStrings.GROQ_SPEECH_RESPONSE_TYPE;
+                    File speechAudio = convertResponseBodyToFile(response.body(), audioFileName);
+                    if (speechAudio != null) {
                         chatMessage.setVoiceFile(speechAudio);
-                        audioRecorder.startPlayAudio(requireActivity(), speechAudio.getAbsolutePath());
                         chatMessageList.add(chatMessage);
                         updateAdapterList(chatMessageList);
-                    } catch (IOException ioException) {
-                        ioException.printStackTrace();
+                        audioRecorder.startPlayAudio(requireActivity(), speechAudio.getAbsolutePath());
+                    } else {
+                        SharedUtils.showMessageNegative(requireActivity(), getString(R.string.error_while_saving_audio_file) + " " + response.message());
                     }
+
 
                 } else {
                     SharedUtils.showMessageNegative(requireActivity(), getString(R.string.third_party_call_failed) + " " + response.message());
@@ -236,6 +238,42 @@ public class ChatBotFragment extends Fragment {
             if (outputStream != null) {
                 outputStream.close();
             }
+        }
+    }
+
+    private File convertResponseBodyToFile(ResponseBody responseBody, String fileName) {
+        try {
+            File outputDir = new File(requireActivity().getExternalFilesDir(Environment.DIRECTORY_MUSIC), "GroqTTS");
+            if (!outputDir.exists()) {
+                outputDir.mkdirs();
+            }
+            // Create file in internal storage or external storage
+            File audioFile = new File(outputDir, fileName);
+
+            // Create input stream from response body
+            InputStream inputStream = responseBody.byteStream();
+
+            // Create output stream to write to file
+            FileOutputStream outputStream = new FileOutputStream(audioFile);
+
+            // Buffer for reading data
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+
+            // Write data to file
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+
+            // Close streams
+            outputStream.close();
+            inputStream.close();
+
+            return audioFile;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

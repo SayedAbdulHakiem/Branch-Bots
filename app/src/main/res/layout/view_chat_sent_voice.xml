@@ -17,9 +17,8 @@
 
         <LinearLayout
             android:id="@+id/play_voice_layout"
-            android:layout_width="250dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
             android:background="@drawable/style_voice_play_radius_backg"
             android:backgroundTint="@color/material_on_background_disabled"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +27,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/play_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:tint="@color/white"
                 app:srcCompat="@drawable/speak" />
 

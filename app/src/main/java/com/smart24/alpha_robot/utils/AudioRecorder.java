@@ -64,39 +64,48 @@ public class AudioRecorder {
     }
 
     public void stopRecording() {
-        if (mediaRecorder != null) {
-            mediaRecorder.stop();
-            mediaRecorder.release();
-            mediaRecorder = null;
-            isRecording = false;
-
+        try {
+            if (mediaRecorder != null) {
+                mediaRecorder.stop();
+                mediaRecorder.release();
+                mediaRecorder = null;
+                isRecording = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     public void cancelRecording() {
-        if (mediaRecorder != null) {
-            mediaRecorder.reset();
-            mediaRecorder.release();
-            mediaRecorder = null;
-            File file = new File(audioFilePath);
-            if (file.exists()) {
-                file.delete();
+        try {
+            if (mediaRecorder != null) {
+                mediaRecorder.reset();
+                mediaRecorder.release();
+                mediaRecorder = null;
+                File file = new File(audioFilePath);
+                if (file.exists()) {
+                    file.delete();
+                }
+                SharedUtils.showToast("Recording cancelled and file deleted (if existed).");
             }
-            SharedUtils.showToast("Recording cancelled and file deleted (if existed).");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
 
     public void startPlayAudio(Activity activity, String filePath) {
         // Stop any currently playing audio before starting a new one
         stopPlayingAudio();
-        if (!(new File(filePath).exists())) {
+        File audioFile = new File(filePath);
+        if (!audioFile.exists()) {
             Toast.makeText(activity, "Not Found Audio File .", Toast.LENGTH_SHORT).show();
             return;
         }
         mediaPlayer = new MediaPlayer();
         try {
-            mediaPlayer.setDataSource(filePath);
+            mediaPlayer.setDataSource(audioFile.getAbsolutePath());
             mediaPlayer.prepare();
             mediaPlayer.start();
             mediaPlayer.setOnCompletionListener(mp -> {

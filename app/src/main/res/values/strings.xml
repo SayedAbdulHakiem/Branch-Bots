@@ -25,4 +25,5 @@
     <string name="third_party_call_failed">Third Party Call Failed </string>
     <string name="transcribed_message">transcribed message</string>
     <string name="chat_with_me">chat with me?</string>
+    <string name="error_while_saving_audio_file">Error while saving audio file</string>
 </resources>

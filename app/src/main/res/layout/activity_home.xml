@@ -30,6 +30,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
+        android:background="@drawable/style_circle_bordered"
+        android:padding="@dimen/medium_padding"
         app:srcCompat="@drawable/speak"
         app:tint="@color/white" />
 

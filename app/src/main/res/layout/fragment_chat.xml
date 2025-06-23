@@ -36,10 +36,11 @@
             android:id="@+id/chat_messages_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginBottom="@dimen/medium_margin"
             android:clipToPadding="false"
-            android:padding="@dimen/large_padding"
+            android:paddingStart="@dimen/large_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingEnd="@dimen/large_padding"
+            android:paddingBottom="@dimen/large_padding"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@id/send_message_layout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,8 +81,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/actions_layout"
-            android:layout_width="65dp"
-            android:layout_height="58dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_circle_bordered"
+            android:padding="@dimen/large_padding"
             app:layout_constraintBottom_toBottomOf="@id/text_ed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_ed">
@@ -89,10 +92,11 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/send_icon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:tint="@color/white"
                 android:visibility="gone"
+                app:layout_constraintBaseline_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -100,13 +104,14 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/record_icon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:tint="@color/white"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:srcCompat="@drawable/speak" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
