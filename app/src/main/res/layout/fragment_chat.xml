@@ -5,17 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/chat_bckg_img"
     tools:context=".ui.chatbot.ChatBotFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bot_icon"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/robot_carton_icon" />
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/chat_scroll_view"
@@ -26,17 +29,17 @@
         app:layout_constraintBottom_toTopOf="@id/send_message_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bot_icon">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/chat_bot_message_adapter"
+            android:id="@+id/chat_messages_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
             android:layout_marginBottom="@dimen/medium_margin"
-            android:padding="@dimen/large_padding"
             android:clipToPadding="false"
+            android:padding="@dimen/large_padding"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@id/send_message_layout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +48,6 @@
 
 
     </androidx.core.widget.NestedScrollView>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/send_message_layout"
@@ -78,8 +80,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/actions_layout"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="65dp"
+            android:layout_height="58dp"
             app:layout_constraintBottom_toBottomOf="@id/text_ed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_ed">
@@ -87,8 +89,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/send_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,10 +100,10 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/record_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:tint="@color/logo_color"
+                android:tint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

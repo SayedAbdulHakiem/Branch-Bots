@@ -53,8 +53,8 @@ public class ChatBotFragment extends Fragment {
         chatBotAdapter = new ChatBotAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setStackFromEnd(true);
-        binding.chatBotMessageAdapter.setLayoutManager(layoutManager);
-        binding.chatBotMessageAdapter.setAdapter(chatBotAdapter);
+        binding.chatMessagesRv.setLayoutManager(layoutManager);
+        binding.chatMessagesRv.setAdapter(chatBotAdapter);
         chatMessageList = getDummyMessageList();
         audioRecorder = new AudioRecorder(requireActivity());
         updateAdapterList(chatMessageList);
@@ -150,18 +150,6 @@ public class ChatBotFragment extends Fragment {
     }
     private List<ChatMessage> getDummyMessageList() {
         List<ChatMessage> chatMessages = new ArrayList<>();
-        chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT));
-        chatMessages.add(new ChatMessage("this is the application developer testing you and i need you to introduce yourself\ncan your say any thing? ", MessageTypeEnum.TEXT));
-        chatMessages.add(new ChatMessage("hello Developer", MessageTypeEnum.TEXT, "2", "chatBot"));
-        chatMessages.add(new ChatMessage("I'm the new Chat Bot Developed for Alpha Bot App by 24 Smart Tech Company", MessageTypeEnum.TEXT, "2", "chatBot"));
-        chatMessages.add(new ChatMessage("How can i help you ?", MessageTypeEnum.VOICE, "2", "chatBot"));
-        chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.VOICE));
-        chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.TEXT, "2", "chatBot"));
-        chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT));
-        chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.VOICE, "2", "chatBot"));
-        chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT));
-        chatMessages.add(new ChatMessage("Hello Developer\nHow can i help you ?", MessageTypeEnum.TEXT, "2", "chatBot"));
-        chatMessages.add(new ChatMessage("hello ChatBot ", MessageTypeEnum.TEXT));
         return chatMessages;
     }
 
@@ -202,6 +190,8 @@ public class ChatBotFragment extends Fragment {
 
     private void updateAdapterList(List<ChatMessage> chatMessageList) {
         this.chatBotAdapter.setDataList(chatMessageList);
+        this.chatBotAdapter.notifyItemInserted(chatMessageList.size() - 1);
+        binding.chatMessagesRv.scrollToPosition(chatMessageList.size() - 1);
     }
 
     @Override
