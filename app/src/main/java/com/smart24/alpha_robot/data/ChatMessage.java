@@ -20,13 +20,21 @@ public class ChatMessage {
     private long timeStamp;
     private boolean isSentByUser;
 
+    public ChatMessage(String text) {
+        this.text = text;
+        this.messageType = MessageTypeEnum.TEXT;
+        this.senderId = "1";// TODO user sender id
+        this.senderName = "1";// TODO user sender name
+        this.timeStamp = new Date().getTime();
+        this.isSentByUser = true;
+    }
     public ChatMessage(String text, MessageTypeEnum messageType) {
         this.text = text;
         this.messageType = messageType;
-        senderId = "1";// TODO user sender id
-        senderName = "1";// TODO user sender name
-        timeStamp = new Date().getTime();
-        isSentByUser = true;
+        this.senderId = "1";// TODO user sender id
+        this.senderName = "1";// TODO user sender name
+        this.timeStamp = new Date().getTime();
+        this.isSentByUser = true;
     }
 
     public ChatMessage(String text, MessageTypeEnum messageType, String senderId, String senderName) {
@@ -34,8 +42,8 @@ public class ChatMessage {
         this.messageType = messageType;
         this.senderId = senderId;
         this.senderName = senderName;
-        timeStamp = new Date().getTime();
-        isSentByUser = false;
+        this.timeStamp = new Date().getTime();
+        this.isSentByUser = false;
     }
 
 }

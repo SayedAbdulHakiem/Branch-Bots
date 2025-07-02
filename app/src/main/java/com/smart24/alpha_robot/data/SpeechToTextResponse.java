@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TranscribedResponse {
+public class SpeechToTextResponse {
     private String text;
 
     @SerializedName("x_groq")

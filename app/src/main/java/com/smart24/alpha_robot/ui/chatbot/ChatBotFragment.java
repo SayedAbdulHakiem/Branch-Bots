@@ -14,13 +14,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.smart24.alpha_robot.R;
+import com.smart24.alpha_robot.data.AnswerResponse;
 import com.smart24.alpha_robot.data.ChatMessage;
 import com.smart24.alpha_robot.data.ChatVoiceMessage;
+import com.smart24.alpha_robot.data.QuestionRequest;
+import com.smart24.alpha_robot.data.SpeechToTextResponse;
 import com.smart24.alpha_robot.data.TextToSpeechRequest;
-import com.smart24.alpha_robot.data.TranscribedResponse;
 import com.smart24.alpha_robot.databinding.FragmentChatBinding;
 import com.smart24.alpha_robot.network.GroqApi;
 import com.smart24.alpha_robot.network.GroqRetrofitClient;
+import com.smart24.alpha_robot.network.Smart24Api;
+import com.smart24.alpha_robot.network.Smart24RetrofitClient;
 import com.smart24.alpha_robot.utils.AudioRecorder;
 import com.smart24.alpha_robot.utils.ConstantStrings;
 import com.smart24.alpha_robot.utils.DateUtils;
@@ -48,6 +52,7 @@ public class ChatBotFragment extends Fragment {
     private AudioRecorder audioRecorder;
     private List<ChatMessage> chatMessageList = new ArrayList<>();
     private GroqApi groqApi;
+    private Smart24Api smart24Api;
 
 
     @Override
@@ -66,7 +71,10 @@ public class ChatBotFragment extends Fragment {
         chatMessageList = getDummyMessageList();
         audioRecorder = new AudioRecorder(requireActivity());
         groqApi = GroqRetrofitClient.getRetrofitInstance().create(GroqApi.class);
-        updateAdapterList(chatMessageList);
+        smart24Api = Smart24RetrofitClient.getRetrofitInstance().create(Smart24Api.class);
+        if (!chatMessageList.isEmpty()) {
+            updateAdapterList(chatMessageList);
+        }
 
         setOnClickListeners();
 
@@ -77,7 +85,8 @@ public class ChatBotFragment extends Fragment {
     private void setOnClickListeners() {
         binding.sendIcon.setOnClickListener(view -> {
             if (binding.textEd.getText() != null && binding.textEd.getText().length() > 0) {
-                sendMessage(binding.textEd.getText().toString());
+                ChatMessage chatMessage = new ChatMessage(binding.textEd.getText().toString());
+                sendQuestionToChatBot(chatMessage);
                 binding.textEd.setText("");
             } else {
                 SharedUtils.showMessageInfo(requireActivity(), getString(R.string.not_valid_message));
@@ -88,7 +97,7 @@ public class ChatBotFragment extends Fragment {
         binding.recordIcon.setOnClickListener(view -> {
             if (audioRecorder.isRecording()) {
                 File recordingFile = stopAndGetRecording();
-                sendMessage(recordingFile);
+                speechToTextCall(recordingFile);
                 binding.recordIcon.setImageDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.speak));
             } else {
                 startRecording();
@@ -120,28 +129,20 @@ public class ChatBotFragment extends Fragment {
         });
     }
 
-    private void sendMessage(String text) {
-//        chatMessageList.add(new ChatMessage(text, MessageTypeEnum.TEXT));
-//        updateAdapterList(chatMessageList);
-        textToSpeechCall(text);
-    }
-
-    private void sendMessage(File voiceFile) {
-        ChatVoiceMessage chatMessage = new ChatVoiceMessage(voiceFile, null);
-        RequestBody requestFile = RequestBody.create(voiceFile, MediaType.parse("audio/*"));
-        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", voiceFile.getName(), requestFile);
-        MultipartBody.Part modelPart = MultipartBody.Part.createFormData("model", ConstantStrings.GROQ_TRANSCRIPT_MODEL_ID);
-
-        Call<TranscribedResponse> transcribedResponseCall = groqApi.transcribeAudio(ConstantStrings.GROQ_API_AUTHORIZATION, filePart, modelPart);
-        transcribedResponseCall.enqueue(new Callback<>() {
+    private void sendQuestionToChatBot(ChatMessage chatMessage) {
+        chatMessageList.add(chatMessage);
+        updateAdapterList(chatMessageList);
+        QuestionRequest questionRequest = new QuestionRequest();
+        questionRequest.setQuestion(chatMessage.getText());
+        questionRequest.setStreaming(false);
+        Call<AnswerResponse> sendQuestionCall = smart24Api.askQuestion(questionRequest);
+        sendQuestionCall.enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<TranscribedResponse> call, Response<TranscribedResponse> response) {
-
+            public void onResponse(Call<AnswerResponse> call, Response<AnswerResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    TranscribedResponse transcribedResponse = response.body();
-                    chatMessage.setText(transcribedResponse.getText());
-                    chatMessageList.add(chatMessage);
-                    updateAdapterList(chatMessageList);
+                    String answerResponse = response.body().getText();
+                    textToSpeechCall(answerResponse, "chatBotId", "chatBotName");
+
                 } else {
                     SharedUtils.showMessageNegative(requireActivity(), getString(R.string.third_party_call_failed) + " " + response.message());
                 }
@@ -149,7 +150,7 @@ public class ChatBotFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<TranscribedResponse> call, Throwable t) {
+            public void onFailure(Call<AnswerResponse> call, Throwable t) {
                 SharedUtils.showMessageNegative(requireActivity(), getString(R.string.third_party_call_failed) + call.toString());
 
             }
@@ -157,8 +158,36 @@ public class ChatBotFragment extends Fragment {
 
     }
 
-    private void textToSpeechCall(String input) {
-        ChatVoiceMessage chatMessage = new ChatVoiceMessage(null, input);
+    private void speechToTextCall(File voiceFile) {
+        ChatVoiceMessage chatMessage = new ChatVoiceMessage(voiceFile, null);
+        RequestBody requestFile = RequestBody.create(voiceFile, MediaType.parse("audio/*"));
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", voiceFile.getName(), requestFile);
+        MultipartBody.Part modelPart = MultipartBody.Part.createFormData("model", ConstantStrings.GROQ_TRANSCRIPT_MODEL_ID);
+
+        Call<SpeechToTextResponse> transcribedResponseCall = groqApi.speechToText(ConstantStrings.GROQ_API_AUTHORIZATION, filePart, modelPart);
+        transcribedResponseCall.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<SpeechToTextResponse> call, Response<SpeechToTextResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    SpeechToTextResponse speechToTextResponse = response.body();
+                    chatMessage.setText(speechToTextResponse.getText());
+                    sendQuestionToChatBot(chatMessage);
+                } else {
+                    SharedUtils.showMessageNegative(requireActivity(), getString(R.string.third_party_call_failed) + " " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SpeechToTextResponse> call, Throwable t) {
+                SharedUtils.showMessageNegative(requireActivity(), getString(R.string.third_party_call_failed) + call.toString());
+
+            }
+        });
+
+    }
+
+    private void textToSpeechCall(String input, String senderId, String senderName) {
+        ChatVoiceMessage chatMessage = new ChatVoiceMessage(null, input, senderId, senderName);
 
         TextToSpeechRequest ttsBody = new TextToSpeechRequest();
         ttsBody.setInput(input);
@@ -181,7 +210,6 @@ public class ChatBotFragment extends Fragment {
                     } else {
                         SharedUtils.showMessageNegative(requireActivity(), getString(R.string.error_while_saving_audio_file) + " " + response.message());
                     }
-
 
                 } else {
                     SharedUtils.showMessageNegative(requireActivity(), getString(R.string.third_party_call_failed) + " " + response.message());
@@ -270,7 +298,6 @@ public class ChatBotFragment extends Fragment {
             inputStream.close();
 
             return audioFile;
-
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -327,4 +354,9 @@ public class ChatBotFragment extends Fragment {
         stopPlayingAudio();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        stopPlayingAudio();
+    }
 }

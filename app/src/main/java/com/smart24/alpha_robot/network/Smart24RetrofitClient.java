@@ -11,7 +11,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class GroqRetrofitClient {
+public class Smart24RetrofitClient {
     public static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance() {
@@ -27,8 +27,8 @@ public class GroqRetrofitClient {
                 loggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
                 okHttpBuilder.addInterceptor(loggingInterceptor);
             }
-            retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(ConstantStrings.GROQ_BASE_URL)
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(ConstantStrings.SMART24_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(okHttpBuilder.build())
                     .build();

@@ -31,8 +31,10 @@ android {
         }
 
         val groqApiKey = properties.getProperty("groq.api.key") ?: ""
+        val chatFlowId = properties.getProperty("chat.flow.id") ?: ""
 
         buildConfigField("String", "GROQ_API_KEY", "\"$groqApiKey\"")
+        buildConfigField("String", "CHAT_FLOW_ID", "\"$chatFlowId\"")
         // --- END: Accessing local.properties for BuildConfig Field ---
     }
 

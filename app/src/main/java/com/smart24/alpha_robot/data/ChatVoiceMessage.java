@@ -18,8 +18,8 @@ public class ChatVoiceMessage extends ChatMessage {
         this.voiceFile = voiceFile;
     }
 
-    public ChatVoiceMessage(File voiceFile, String senderId, String senderName) {
-        super(null, MessageTypeEnum.VOICE, senderId, senderName);
+    public ChatVoiceMessage(File voiceFile, String text, String senderId, String senderName) {
+        super(text, MessageTypeEnum.VOICE, senderId, senderName);
         this.voiceFile = voiceFile;
     }
 
