@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.AlphaRobot" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.BranchBots" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_250</item>
         <item name="colorPrimaryVariant">@color/purple_750</item>
@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
     <!-- Base application theme. -->
-    <style name="Base.Theme.AlphaRobot" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.BranchBots" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>

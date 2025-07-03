@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:windowSoftInputMode="adjustResize"
         android:name=".utils.MyApp"
-        android:theme="@style/Theme.AlphaRobot">
+        android:theme="@style/Theme.BranchBots">
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
@@ -35,7 +35,7 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.AlphaRobot"
+            android:theme="@style/Theme.BranchBots"
             android:windowSoftInputMode="adjustResize">
 
         </activity>

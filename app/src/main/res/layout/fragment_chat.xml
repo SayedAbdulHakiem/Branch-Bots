@@ -5,19 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/chat_bckg_img"
+    android:background="@drawable/background_img"
     tools:context=".ui.chatbot.ChatBotFragment">
-
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/bot_icon"
+        android:id="@+id/logo_with_name"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:src="@drawable/logo_with_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/face_gif"
         android:layout_width="170dp"
         android:layout_height="150dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/robot_carton_icon" />
+        app:srcCompat="@drawable/face_2_1" />
 
 
     <androidx.core.widget.NestedScrollView

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/chat_bckg_img"
+    android:background="@drawable/background_img"
     tools:context=".ui.home.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -23,16 +23,13 @@
     <include layout="@layout/content_home" />
 
 
-    <ImageView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/chat"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:background="@drawable/style_circle_bordered"
+        android:layout_gravity="end|bottom"
+        android:contentDescription="@string/chatbot"
         android:padding="@dimen/medium_padding"
-        app:srcCompat="@drawable/speak"
-        app:tint="@color/white" />
+        android:src="@drawable/speak" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

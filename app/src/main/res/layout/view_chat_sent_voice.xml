@@ -31,7 +31,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"
-                android:tint="@color/white"
+                android:tint="@color/cardview_dark_background"
                 app:srcCompat="@drawable/speak" />
 
             <androidx.appcompat.widget.AppCompatSeekBar
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/droid_kuffi"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="@dimen/small_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/play_voice_layout" />

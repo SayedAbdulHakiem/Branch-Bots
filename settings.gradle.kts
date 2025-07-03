@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Alpha-Robot"
+rootProject.name = "Branch-Bots"
 include(":app")
  

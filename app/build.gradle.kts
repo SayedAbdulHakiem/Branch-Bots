@@ -8,16 +8,16 @@ plugins {
 }
 
 android {
-    namespace = "com.smart24.alpha_robot"
+    namespace = "com.smart24.branch_bots"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.smart24.alpha_robot"
+        applicationId = "com.smart24.branch_bots"
         minSdk = 31
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
+        android.buildFeatures.buildConfig = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // --- START: Accessing local.properties for BuildConfig Field ---
@@ -90,4 +90,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+
+    implementation(libs.android.gif.drawable)
 }
