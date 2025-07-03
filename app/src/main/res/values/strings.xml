@@ -32,4 +32,5 @@
     <string name="usage_instructions">talk to me or select one of the bellow questions</string>
     <string name="introduce_question">Introduce Question</string>
     <string name="introduce_branch_bots">Introduce Branch Bots</string>
+    <string name="selected_question">selected question</string>
 </resources>

@@ -1,11 +1,15 @@
-package com.smart24.branch_bots.utils;
+package com.smart24.branch_bots.shared.viewmodel;
 
 import android.app.Activity;
-import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Environment;
 import android.widget.Toast;
+
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
+import com.smart24.branch_bots.utils.SharedUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,25 +17,39 @@ import java.io.IOException;
 import lombok.Getter;
 
 
-public class AudioRecorder {
+public class MyAudioMultiMediaViewModel extends ViewModel {
 
-    private final Context context;
+    private Activity activity;
     private MediaRecorder mediaRecorder;
     private MediaPlayer mediaPlayer;
 
     @Getter
     private String audioFilePath;
+    private MutableLiveData<Boolean> audioPlayingMld;
+    private MutableLiveData<Boolean> recordingMld;
 
-    @Getter
-    private boolean isRecording = false;
 
-    public AudioRecorder(Context context) {
-        this.context = context;
+    public void setRequiredDependencies(Activity activity) {
+        this.activity = activity;
+    }
+
+    public MutableLiveData<Boolean> getAudioPlayingMld() {
+        if (audioPlayingMld == null) {
+            audioPlayingMld = new MutableLiveData<>(false);
+        }
+        return audioPlayingMld;
+    }
+
+    public MutableLiveData<Boolean> getRecordingMld() {
+        if (recordingMld == null) {
+            recordingMld = new MutableLiveData<>(false);
+        }
+        return recordingMld;
     }
 
 
     public void setAudioFilePath(String outPutFileName) {
-        File outputDir = new File(context.getExternalFilesDir(Environment.DIRECTORY_MUSIC), "ChatBotAudioRecords");
+        File outputDir = new File(activity.getExternalFilesDir(Environment.DIRECTORY_MUSIC), "ChatBotAudioRecords");
         if (!outputDir.exists()) {
             if (!outputDir.mkdirs()) {
                 SharedUtils.showToast("Could not create a directory for recording");
@@ -44,14 +62,14 @@ public class AudioRecorder {
         if (mediaRecorder == null) {
             try {
                 setAudioFilePath(outPutFileName);
-                mediaRecorder = new MediaRecorder(context);
+                mediaRecorder = new MediaRecorder(activity);
                 mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
                 mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
                 mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
                 mediaRecorder.setOutputFile(audioFilePath);
                 mediaRecorder.prepare();
                 mediaRecorder.start();
-                this.isRecording = true;
+                getRecordingMld().setValue(Boolean.TRUE);
             } catch (IOException e) {
                 SharedUtils.showToast("Failed to start recording: " + e.getMessage());
                 if (mediaRecorder != null) {
@@ -69,7 +87,7 @@ public class AudioRecorder {
                 mediaRecorder.stop();
                 mediaRecorder.release();
                 mediaRecorder = null;
-                isRecording = false;
+                getRecordingMld().setValue(Boolean.FALSE);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,6 +123,7 @@ public class AudioRecorder {
         }
         mediaPlayer = new MediaPlayer();
         try {
+            getAudioPlayingMld().setValue(Boolean.TRUE);
             mediaPlayer.setDataSource(audioFile.getAbsolutePath());
             mediaPlayer.prepare();
             mediaPlayer.start();
@@ -132,6 +151,7 @@ public class AudioRecorder {
             }
             mediaPlayer.release();
             mediaPlayer = null;
+            getAudioPlayingMld().setValue(Boolean.FALSE);
         }
     }
 

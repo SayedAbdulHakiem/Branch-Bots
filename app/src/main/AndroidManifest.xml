@@ -35,7 +35,7 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.BranchBots"
+            android:theme="@style/Theme.Design.NoActionBar"
             android:windowSoftInputMode="adjustResize">
 
         </activity>

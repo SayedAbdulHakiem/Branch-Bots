@@ -14,7 +14,7 @@ import com.smart24.branch_bots.R;
 import com.smart24.branch_bots.data.ChatMessage;
 import com.smart24.branch_bots.data.ChatVoiceMessage;
 import com.smart24.branch_bots.data.MessageTypeEnum;
-import com.smart24.branch_bots.utils.AudioRecorder;
+import com.smart24.branch_bots.ui.home.HomeFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,11 +37,9 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.AdapterV
     private List<ChatMessage> dataList = new ArrayList<>();
     private Fragment fragment;
 
-    AudioRecorder audioRecorder;
 
     public ChatBotAdapter(Fragment fragment) {
         this.fragment = fragment;
-        this.audioRecorder = new AudioRecorder(fragment.requireActivity());
     }
 
     @Override
@@ -87,9 +85,12 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.AdapterV
                 ChatVoiceMessage chatVoiceMessage = (ChatVoiceMessage) dataList.get(position);
                 holder.transcribedMessageTv.setText(chatVoiceMessage.getText());
                 holder.itemView.setOnClickListener(view -> {
-                    audioRecorder.startPlayAudio(fragment.requireActivity(), chatVoiceMessage.getVoiceFile().getAbsolutePath());
-                    holder.voiceSeekBar.setProgress(0);
-                    holder.durationTv.setText(String.format("00:10"));
+                    if (fragment instanceof HomeFragment) {
+                        ((HomeFragment) fragment).getMyAudioMultiMediaViewModel().startPlayAudio(fragment.requireActivity(), chatVoiceMessage.getVoiceFile().getAbsolutePath());
+                        holder.voiceSeekBar.setProgress(0);
+                        holder.durationTv.setText(String.format("00:10"));
+                    }
+
                 });
 
             }

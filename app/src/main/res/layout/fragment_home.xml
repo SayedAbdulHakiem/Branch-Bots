@@ -10,18 +10,17 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/logo_with_name_image"
-        android:layout_width="60dp"
-        android:layout_height="25dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_marginStart="@dimen/xlarge_margin"
-        android:layout_marginTop="@dimen/small_margin"
         android:src="@drawable/logo_with_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/settings_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/xlarge_margin"
         android:src="@drawable/settings_ic"
@@ -76,36 +75,62 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/face_2_1" />
 
-    <TextView
-        android:id="@+id/how_can_i_help_you_tv"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/hint_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_margin"
+        app:layout_constraintEnd_toEndOf="@id/face_gif"
+        app:layout_constraintStart_toStartOf="@id/face_gif"
+        app:layout_constraintTop_toBottomOf="@id/face_gif">
+
+        <TextView
+            android:id="@+id/how_can_i_help_you_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:fontFamily="@font/droid_kuffi_bold"
+            android:text="@string/how_can_i_help_you"
+            android:textColor="@color/white"
+            android:textSize="@dimen/large_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/usage_instructions_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:fontFamily="@font/droid_kuffi"
+            android:text="@string/usage_instructions"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text"
+            app:layout_constraintEnd_toEndOf="@id/how_can_i_help_you_tv"
+            app:layout_constraintStart_toStartOf="@id/how_can_i_help_you_tv"
+            app:layout_constraintTop_toBottomOf="@id/how_can_i_help_you_tv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/selected_question_tv"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_img_selected_svg"
         android:fontFamily="@font/droid_kuffi_bold"
-        android:text="@string/how_can_i_help_you"
+        android:gravity="center"
+        android:padding="@dimen/large_padding"
+        android:text="@string/selected_question"
         android:textColor="@color/white"
-        android:textSize="@dimen/large_text"
+        android:textSize="@dimen/medium_text"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/face_gif"
         app:layout_constraintStart_toStartOf="@id/face_gif"
         app:layout_constraintTop_toBottomOf="@id/face_gif" />
 
-    <TextView
-        android:id="@+id/usage_instructions_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
-        android:fontFamily="@font/droid_kuffi"
-        android:text="@string/usage_instructions"
-        android:textColor="@color/white"
-        android:textSize="@dimen/medium_text"
-        app:layout_constraintEnd_toEndOf="@id/how_can_i_help_you_tv"
-        app:layout_constraintStart_toStartOf="@id/how_can_i_help_you_tv"
-        app:layout_constraintTop_toBottomOf="@id/how_can_i_help_you_tv" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/predefined_questions_rv"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:paddingStart="@dimen/large_padding"
         android:paddingTop="@dimen/small_padding"
@@ -128,20 +153,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/mic_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="@dimen/xlarge_margin"
             android:src="@drawable/mic_ic"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/speaker_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/xlarge_margin"
-            android:src="@drawable/speaker_ic"
-            app:layout_constraintStart_toEndOf="@id/mic_btn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView

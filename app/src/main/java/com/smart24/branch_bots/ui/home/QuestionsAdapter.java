@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.smart24.branch_bots.R;
 import com.smart24.branch_bots.data.Question;
-import com.smart24.branch_bots.utils.AudioRecorder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +21,12 @@ import lombok.Getter;
 
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.AdapterViewHolder> {
 
-
     @Getter
     private List<Question> dataList = new ArrayList<>();
     private Fragment fragment;
 
-    AudioRecorder audioRecorder;
-
     public QuestionsAdapter(Fragment fragment) {
         this.fragment = fragment;
-        this.audioRecorder = new AudioRecorder(fragment.requireActivity());
     }
 
 
@@ -46,6 +41,12 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Adap
         Question question = dataList.get(position);
         holder.questionTitleTv.setText(question.getTitle());
         holder.questionTextTv.setText(String.format("\"%s\"", question.getText()));
+        holder.itemView.setOnClickListener(view -> {
+            if (fragment instanceof HomeFragment) {
+                ((HomeFragment) fragment).onSelectedQuestion(question);
+            }
+
+        });
     }
 
 

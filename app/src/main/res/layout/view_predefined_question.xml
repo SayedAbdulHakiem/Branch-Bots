@@ -16,7 +16,7 @@
         android:id="@+id/parent_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_bckg_svg"
+        android:background="@drawable/card_img_unselected_svg"
         android:padding="@dimen/xlarge_padding">
 
 
@@ -32,26 +32,28 @@
 
         <TextView
             android:id="@+id/question_title_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/large_margin"
             android:fontFamily="@font/droid_kuffi"
             android:text="@string/introduce_question"
             android:textColor="@color/white"
             android:textSize="@dimen/small_text"
-            app:layout_constraintStart_toEndOf="@id/question_icon"
+            app:layout_constraintEnd_toEndOf="@+id/question_text_tv"
+            app:layout_constraintStart_toStartOf="@+id/question_text_tv"
             app:layout_constraintTop_toTopOf="@id/question_icon" />
 
         <TextView
             android:id="@+id/question_text_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin"
             android:fontFamily="@font/droid_kuffi"
             android:minWidth="180dp"
             android:text="@string/introduce_branch_bots"
             android:textColor="@color/white"
             android:textSize="@dimen/medium_text"
-            app:layout_constraintStart_toStartOf="@id/question_title_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/question_icon"
             app:layout_constraintTop_toBottomOf="@id/question_title_tv" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

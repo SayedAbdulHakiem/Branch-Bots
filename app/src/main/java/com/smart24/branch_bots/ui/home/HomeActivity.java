@@ -24,19 +24,19 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
+//        setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        binding.chat.setVisibility(View.VISIBLE);
+//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+//        binding.chat.setVisibility(View.VISIBLE);
         binding.chat.setOnClickListener(view -> openChatFragment());
     }
 
     public void openChatFragment() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         navController.navigate(R.id.ChatFragment, null);
-        binding.chat.setVisibility(View.GONE);
+//        binding.chat.setVisibility(View.GONE);
     }
     @Override
     public boolean onSupportNavigateUp() {
