@@ -8,7 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
-public interface Smart24Api {
+public interface SmartTechApi {
 
     @POST("/api/v1/prediction/" + BuildConfig.CHAT_FLOW_ID)
     Call<AnswerResponse> askQuestion(@Body QuestionRequest body);

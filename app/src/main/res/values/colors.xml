@@ -13,4 +13,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="logo_color">#1DA3EF</color>
+    <color name="background">#070322</color>
+
 </resources>

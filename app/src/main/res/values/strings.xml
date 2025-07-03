@@ -27,4 +27,9 @@
     <string name="chat_with_me">chat with me?</string>
     <string name="error_while_saving_audio_file">Error while saving audio file</string>
     <string name="chatbot">ChatBot</string>
+    <string name="en">EN</string>
+    <string name="how_can_i_help_you">How Can I Help You Today</string>
+    <string name="usage_instructions">talk to me or select one of the bellow questions</string>
+    <string name="introduce_question">Introduce Question</string>
+    <string name="introduce_branch_bots">Introduce Branch Bots</string>
 </resources>

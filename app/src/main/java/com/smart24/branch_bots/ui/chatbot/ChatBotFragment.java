@@ -24,7 +24,7 @@ import com.smart24.branch_bots.data.TextToSpeechRequest;
 import com.smart24.branch_bots.databinding.FragmentChatBinding;
 import com.smart24.branch_bots.network.GroqApi;
 import com.smart24.branch_bots.network.GroqRetrofitClient;
-import com.smart24.branch_bots.network.Smart24Api;
+import com.smart24.branch_bots.network.SmartTechApi;
 import com.smart24.branch_bots.network.Smart24RetrofitClient;
 import com.smart24.branch_bots.utils.AudioRecorder;
 import com.smart24.branch_bots.utils.ConstantStrings;
@@ -54,7 +54,7 @@ public class ChatBotFragment extends Fragment {
     private AudioRecorder audioRecorder;
     private List<ChatMessage> chatMessageList = new ArrayList<>();
     private GroqApi groqApi;
-    private Smart24Api smart24Api;
+    private SmartTechApi smartTechApi;
 
 
     @Override
@@ -73,7 +73,7 @@ public class ChatBotFragment extends Fragment {
         chatMessageList = getDummyMessageList();
         audioRecorder = new AudioRecorder(requireActivity());
         groqApi = GroqRetrofitClient.getRetrofitInstance().create(GroqApi.class);
-        smart24Api = Smart24RetrofitClient.getRetrofitInstance().create(Smart24Api.class);
+        smartTechApi = Smart24RetrofitClient.getRetrofitInstance().create(SmartTechApi.class);
         if (!chatMessageList.isEmpty()) {
             updateAdapterList(chatMessageList);
         }
@@ -100,10 +100,10 @@ public class ChatBotFragment extends Fragment {
             if (audioRecorder.isRecording()) {
                 File recordingFile = stopAndGetRecording();
                 speechToTextCall(recordingFile);
-                binding.recordIcon.setImageDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.speak));
+                binding.recordIcon.setImageDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.speaker_filled_ic));
             } else {
                 startRecording();
-                binding.recordIcon.setImageDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.microphone_ic));
+                binding.recordIcon.setImageDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.mic_filled_ic));
             }
         });
 
@@ -144,7 +144,7 @@ public class ChatBotFragment extends Fragment {
         QuestionRequest questionRequest = new QuestionRequest();
         questionRequest.setQuestion(chatMessage.getText());
         questionRequest.setStreaming(false);
-        Call<AnswerResponse> sendQuestionCall = smart24Api.askQuestion(questionRequest);
+        Call<AnswerResponse> sendQuestionCall = smartTechApi.askQuestion(questionRequest);
         sendQuestionCall.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<AnswerResponse> call, Response<AnswerResponse> response) {
