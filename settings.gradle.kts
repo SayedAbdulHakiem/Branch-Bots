@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Branch-Bots"
 include(":app")
- 
+include(":newSceneSDK")

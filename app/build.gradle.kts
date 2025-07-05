@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     implementation(libs.activity)
+    implementation(project(":newSceneSDK"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -91,5 +92,9 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
 
+    // for gif player
     implementation(libs.android.gif.drawable)
+
+    implementation(":newSceneSdk")
+
 }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.csjbot.coshandler.core.CsjRobot;
 import com.smart24.branch_bots.R;
 import com.smart24.branch_bots.data.Question;
 import com.smart24.branch_bots.databinding.FragmentHomeBinding;
@@ -70,6 +71,8 @@ public class HomeFragment extends Fragment {
             } else {
                 chatBotServiceViewModel.startRecording(requireActivity());
                 binding.micBtn.setImageDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.mic_filled_ic));
+//                TODO the following line just for example of sdk usage
+//                CsjRobot.getInstance().getAction().move(10);
             }
         });
 

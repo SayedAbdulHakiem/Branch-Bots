@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">coshandler</string>
+    <string name="start_recording_successfully">録音開始成功です</string>
+    <string name="start_recording_failed">録音に失敗しました</string>
+    <string name="close_recording_successfully">オフ録音成功です</string>
+    <string name="close_recording_failed">オフ録音失敗です</string>
+</resources>

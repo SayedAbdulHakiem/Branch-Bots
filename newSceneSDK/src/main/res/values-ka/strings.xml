@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+   <string name="app_name">თანამშრომელი</string>
+   <string name="start_recording_successfully">წარმატებით დაიწყეთ ჩაწერა</string>
+   <string name="start_recording_failed">ჩაწერის დაწყება ვერ მოხერხდა</string>
+   <string name="close_recording_successfully">ჩანაწერის წარმატებით დახურვა</string>
+   <string name="close_recording_failed">ჩანაწერის დახურვა ვერ მოხერხდა</string>
+</resources>

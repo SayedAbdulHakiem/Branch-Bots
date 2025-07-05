@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+   <string name="app_name">coshandler</string>
+   <string name="start_recording_successfully">Start recording successfully</string>
+   <string name="start_recording_failed">Failed to start recording</string>
+   <string name="close_recording_successfully">Close recording successfully</string>
+   <string name="close_recording_failed">Failed to close recording</string>
+</resources>
