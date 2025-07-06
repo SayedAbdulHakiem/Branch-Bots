@@ -33,4 +33,8 @@
     <string name="introduce_question">Introduce Question</string>
     <string name="introduce_branch_bots">Introduce Branch Bots</string>
     <string name="selected_question">selected question</string>
+    <string name="move_forward_called">Move Forward Called</string>
+    <string name="move_right_called">Move Right Called</string>
+    <string name="move_back_called">Move Back Called</string>
+    <string name="move_left_called">Move Left Called</string>
 </resources>

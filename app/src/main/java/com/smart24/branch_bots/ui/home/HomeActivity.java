@@ -1,7 +1,6 @@
 package com.smart24.branch_bots.ui.home;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -9,6 +8,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.csjbot.coshandler.aiui.aiui_soft.send_msg.http.RetrofitFactory;
+import com.csjbot.coshandler.core.CsjRobot;
+import com.csjbot.coshandler.listener.OnAuthenticationListener;
 import com.smart24.branch_bots.R;
 import com.smart24.branch_bots.databinding.ActivityHomeBinding;
 
@@ -31,6 +33,21 @@ public class HomeActivity extends AppCompatActivity {
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 //        binding.chat.setVisibility(View.VISIBLE);
         binding.chat.setOnClickListener(view -> openChatFragment());
+
+
+        // The following parts related to SDK config
+        CsjRobot.authentication(this, "appKey", "appSecret", new OnAuthenticationListener() {
+            @Override
+            public void success() {
+
+            }
+
+            @Override
+            public void error() {
+
+            }
+        });
+        RetrofitFactory.initClient();
     }
 
     public void openChatFragment() {

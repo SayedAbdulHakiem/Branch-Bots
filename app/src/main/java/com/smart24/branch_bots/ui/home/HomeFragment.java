@@ -12,12 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.csjbot.coshandler.core.CsjRobot;
 import com.smart24.branch_bots.R;
 import com.smart24.branch_bots.data.Question;
 import com.smart24.branch_bots.databinding.FragmentHomeBinding;
 import com.smart24.branch_bots.shared.viewmodel.ChatBotServiceViewModel;
+import com.smart24.branch_bots.shared.viewmodel.MoveViewModel;
 import com.smart24.branch_bots.shared.viewmodel.MyAudioMultiMediaViewModel;
+import com.smart24.branch_bots.utils.SharedUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class HomeFragment extends Fragment {
     private ChatBotServiceViewModel chatBotServiceViewModel;
     @Getter
     private MyAudioMultiMediaViewModel myAudioMultiMediaViewModel;
+    @Getter
+    MoveViewModel moveViewModel;
 
 
     @Override
@@ -45,6 +48,7 @@ public class HomeFragment extends Fragment {
         myAudioMultiMediaViewModel.setRequiredDependencies(requireActivity());
         chatBotServiceViewModel = new ViewModelProvider(requireActivity()).get(ChatBotServiceViewModel.class);
         chatBotServiceViewModel.setRequiredDependencies(requireActivity());
+        moveViewModel = new ViewModelProvider(requireActivity()).get(MoveViewModel.class);
         questionsAdapter = new QuestionsAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -71,10 +75,28 @@ public class HomeFragment extends Fragment {
             } else {
                 chatBotServiceViewModel.startRecording(requireActivity());
                 binding.micBtn.setImageDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.mic_filled_ic));
-//                TODO the following line just for example of sdk usage
-//                CsjRobot.getInstance().getAction().move(10);
             }
         });
+
+        //        TODO the following line just for example of sdk usage
+        binding.moveForwardBtn.setOnClickListener(view -> {
+            moveViewModel.moveForward();
+            SharedUtils.showMessageInfo(requireActivity(), getString(R.string.move_forward_called));
+        });
+        binding.moveBackBtn.setOnClickListener(view -> {
+            moveViewModel.moveBack();
+            SharedUtils.showMessageInfo(requireActivity(), getString(R.string.move_back_called));
+        });
+        binding.moveRightBtn.setOnClickListener(view -> {
+            moveViewModel.moveRight();
+            SharedUtils.showMessageInfo(requireActivity(), getString(R.string.move_right_called));
+        });
+        binding.moveLeftBtn.setOnClickListener(view -> {
+            moveViewModel.moveLeft();
+            SharedUtils.showMessageInfo(requireActivity(), getString(R.string.move_left_called));
+        });
+
+
 
     }
 

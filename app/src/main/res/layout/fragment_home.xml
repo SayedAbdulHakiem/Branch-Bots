@@ -62,6 +62,59 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:padding="@dimen/large_padding"
+        app:layout_constraintBottom_toBottomOf="@id/face_gif"
+        app:layout_constraintEnd_toStartOf="@id/face_gif"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/face_gif">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/move_forward_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:rotation="270"
+            android:src="@drawable/arrow_right_ic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/move_right_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:rotation="0"
+            android:src="@drawable/arrow_right_ic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/move_back_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:rotation="90"
+            android:src="@drawable/arrow_right_ic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/move_left_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:rotation="180"
+            android:src="@drawable/arrow_right_ic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/face_gif"
